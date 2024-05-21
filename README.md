@@ -135,7 +135,7 @@ docker image pull <registry_name>/<github_username>/<repository_name>/<image_nam
 ```sh
 "traefik.http.routers.sotracteur.rule=Host(\`groupXX.socra-sigl.fr\`)"  # determines which domain name Traefik will reverse proxy to
 "traefik.http.routers.sotracteur.tls=true" # Activate TSL to allow HTTPS protocol over HTTP (we setup automatic SSL for you)
-"traefik.http.routers.sotracteur.tls.certresolver=myresolver"  # Sets how to resolve SSL certificates
+"traefik.http.routers.sotracteur.tls.certresolver=letsencrypt"  # Sets how to resolve SSL certificates
 "traefik.enable=true" # Allow traefik to inspect the container's label
 "traefik.docker.network=web" # Explicitly tells traefik to inspect docker network named web (from your VM; you can see it via `docker network ls`)
 ```
@@ -151,7 +151,7 @@ So your command to run the container will look like:
     --name sotracteur-frontend \
     --label "traefik.http.routers.sotracteur.rule=Host(\`groupXX.socra-sigl.fr\`)" \
     --label "traefik.http.routers.sotracteur.tls=true" \
-    --label "traefik.http.routers.sotracteur.tls.certresolver=myresolver" \
+    --label "traefik.http.routers.sotracteur.tls.certresolver=letsencrypt" \
     --label "traefik.enable=true" \
     --label "traefik.docker.network=web" \
     <docker_image_name>
